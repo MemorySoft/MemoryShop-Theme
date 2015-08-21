@@ -1,0 +1,86 @@
+﻿@model CompareProductsModel
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.CompareProducts").Text);
+}
+@using Nop.Web.Models.Catalog;
+@{
+  string columnWidth = "";
+  if (Model.Products.Count > 0)
+  {
+      columnWidth = Math.Round((decimal)(90M / Model.Products.Count), 0).ToString() + "%";
+  }
+
+
+  var specificationAttributes = new List<ProductSpecificationModel>();
+  foreach (var product in Model.Products)
+  {
+    foreach (var attribute in product.SpecificationAttributeModels)
+    {
+      if (specificationAttributes.FirstOrDefault(sa => sa.SpecificationAttributeId == attribute.SpecificationAttributeId) == null)
+      {
+          specificationAttributes.Add(attribute);
+      }
+    }
+  }
+}
+
+<div class="features_items my-account-page"><!--features_items-->
+
+  <h2 class="title">@T("Products.Compare.Title")</h2>
+
+  <div class="custom-page-box-div">
+
+    @if (Model.Products.Count > 0)
+    {
+
+      <div id="cart_items" class="cart-compare">
+        <div class="cart_info">
+
+          @foreach (var product in Model.Products)
+          {
+            <div class="col-md-3 compare-item text-center">
+
+                <button class="btn btn-secondary btn-sm pull-right" onclick="setLocation('@Url.RouteUrl("RemoveProductFromCompareList", new { productId = product.Id })')"  >
+                  <i class="fa fa-times"></i>
+                </button>
+                <img alt="@product.DefaultPictureModel.AlternateText" src="@product.DefaultPictureModel.ImageUrl" title="@product.DefaultPictureModel.Title" />
+                <hr>
+
+                <h4 class="title">
+                  <a href="@Url.RouteUrl("Product", new { SeName = product.SeName })">@product.Name</a>
+                </h4>
+                @Html.Raw(product.ShortDescription)
+                <hr>
+
+                <span class="compare-price">@product.ProductPrice.Price</span>
+
+                @if (Model.IncludeFullDescriptionInCompareProducts)
+                {
+                  <hr>
+                  <div class="full-description">
+                    <b>@T("Products.Compare.FullDescription")</b>
+                    <p class="text-center">
+                      @Html.Raw(product.FullDescription)
+                    </p>
+                  </div>
+                }
+            </div>
+          }
+        </div>
+
+        <div class="compare-clear">
+          <hr>
+          <button class="btn btn-primary btn-sm pull-right" onclick="setLocation('@Url.RouteUrl("ClearCompareList")')" >
+            @T("Products.Compare.Clear")
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+
+

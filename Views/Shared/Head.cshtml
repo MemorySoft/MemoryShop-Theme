@@ -1,0 +1,37 @@
+﻿@using Nop.Core;
+@using Nop.Core.Infrastructure;
+@using Nop.Web.Framework.UI
+@{
+     var supportRtl = EngineContext.Current.Resolve<IWorkContext>().WorkingLanguage.Rtl;
+
+    if (supportRtl)
+    {
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/css/main.css");
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/css/animate.css");
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/css/prettyPhoto.css");
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/css/price-range.css");
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/css/responsive.css");
+
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/css/styles.rtl.css");
+
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/bootstrap-3.3.5/css/bootstrap.rtl.css");
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/bootstrap-3.3.5/css/bootstrap.min.css");
+        Html.AppendCssFileParts("~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css");
+    }
+    else
+    {  
+        <link rel="stylesheet" type="text/css" href="~/Themes/MemoryShop/Content/css/color-styles/memoryshop.css" title="memory" media="screen" />
+
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/css/main.css");
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/css/animate.css");
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/css/prettyPhoto.css");
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/css/price-range.css");
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/css/responsive.css");
+    
+        Html.AppendCssFileParts("~/Themes/MemoryShop/Content/bootstrap-3.3.5/css/bootstrap.min.css");
+        // Html.AppendCssFileParts("~/Themes/MemoryShop/Content/font-awosome-4.3.0/css/font-awesome.min.css");
+        Html.AppendCssFileParts("~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css");
+    }
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+}

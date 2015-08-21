@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_Root.cshtml";
+}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+		    @Html.Widget("main_column_before")
+		    @RenderBody()
+		    @Html.Widget("main_column_after")
+		    @RenderSection("left", required: false)
+		</div>
+	</div>
+</div>
+
+
+
+
+	

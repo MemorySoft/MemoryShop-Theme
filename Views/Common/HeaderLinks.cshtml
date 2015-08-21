@@ -1,0 +1,113 @@
+﻿@model HeaderLinksModel
+@using Nop.Web.Models.Common;
+@using Nop.Web.Models.ShoppingCart;
+<div class="shop-menu row">
+
+    @*<ul class="nav navbar-nav">
+        <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+        <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+        <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+        <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+    </ul>*@
+
+    <ul  class="top-navigation">
+        <div class="logo">
+            <a class="logo" href="@Url.RouteUrl("HomePage")"></a>
+        </div>
+        <div class="user-controls pull-left">
+            @if (Model.IsAuthenticated)
+            {
+                <li><a href="@Url.RouteUrl("CustomerInfo")"><i class="fa fa-user"></i> <span class="texto-link">@Model.CustomerEmailUsername</span></a></li>
+                <li><a href="@Url.RouteUrl("Logout")" ><i class="fa fa-power-off"></i></a></li>
+                <!-- @T("Account.Logout") -->
+            }
+            else
+            {
+                <li><a href="@Url.RouteUrl("Login")" ><i class="fa fa-sign-in"></i></a></li>
+                <!-- @T("Account.Login") -->
+                <li><a href="@Url.RouteUrl("Register")" ><i class="fa fa-user-plus"></i></a></li>
+                <!-- @T("Account.Register") -->
+            }
+            @if (Model.AllowPrivateMessages)
+            {
+                <li><a href="@Url.RouteUrl("PrivateMessages", new { tab = "" })"><i class="fa fa-envelope"></i> @T("PrivateMessages.Inbox")</a>
+                    @Model.UnreadPrivateMessages</li>
+                if (!string.IsNullOrEmpty(Model.AlertMessage))
+                {
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            displayPopupNotification('@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.AlertMessage))', 'success', false);
+                        });
+                    </script>
+                }
+            }
+            @Html.Action("AdminHeaderLinks", "Common")
+
+        </div>
+
+        <div class="shop-controls pull-right">
+            @if (Model.WishlistEnabled)
+            {
+                <li>
+                    <a href="@Url.RouteUrl("Wishlist")" class="ico-wishlist">
+                        <span class="cart-label"><i class="fa fa-heart"></i></span>
+                        <!-- @T("Wishlist") -->
+                        <span class="wishlist-qty">@T("Wishlist.HeaderQuantity", Model.WishlistItems)</span>
+                    </a>
+                </li>
+            }
+            @if (Model.ShoppingCartEnabled)
+            {
+                <li id="topcartlink" class="dropdown">
+                    
+                    @if (!String.IsNullOrWhiteSpace(@Html.Action("FlyoutShoppingCart", "ShoppingCart").ToString()))
+                    {
+                        <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart dropdown-toggle minicart-anchor" data-toggle="dropdown" @*data-hover="dropdown"*@>
+                            <span class="cart-label"><i class="fa fa-shopping-cart"></i> <span class="texto-link">@T("ShoppingCart")</span></span>
+                            <span class="cart-qty">@T("ShoppingCart.HeaderQuantity", Model.ShoppingCartItems)</span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="minicart-dropdown-menu">
+                            <li>@Html.Action("FlyoutShoppingCart", "ShoppingCart")</li>
+                        </ul>
+                    } else
+                    {
+                        <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">
+                            <span class="cart-label"><i class="fa fa-shopping-cart"></i> @T("ShoppingCart")</span>
+                            <span class="cart-qty">@T("ShoppingCart.HeaderQuantity", Model.ShoppingCartItems)</span>
+                        </a>
+                    }
+                </li>
+            }
+
+        </div>
+    </ul>
+</div>
+
+@if (Model.ShoppingCartEnabled)
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.top-menu').on('mouseenter', '#topcartlink', function () {
+                $('#flyout-cart').addClass('active');
+            });
+            $('.top-menu').on('mouseleave', '#topcartlink', function () {
+                $('#flyout-cart').removeClass('active');
+            });
+            $('.top-menu').on('mouseenter', '#flyout-cart', function () {
+                $('#flyout-cart').addClass('active');
+            });
+            $('.top-menu').on('mouseleave', '#flyout-cart', function () {
+                $('#flyout-cart').removeClass('active');
+            });
+            $('ul.minicart-dropdown-menu li').slimScroll({
+                color: '#96004B',
+                size: '10px',
+                height: '340px',
+                alwaysVisible: true
+            });
+        });
+    </script>
+}
+

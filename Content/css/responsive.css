@@ -460,10 +460,6 @@ ul.sub-menu{
 	margin-top: 40px;
 }
 
-#reviews p, .blog-post-area .single-blog-post p{
-	text-align: justify;
-}
-
 #reviews form span input{
 	width: 100%;
 	margin-bottom: 20px;

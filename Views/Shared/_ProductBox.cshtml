@@ -57,24 +57,20 @@
                         @if (!String.IsNullOrEmpty(Model.ProductPrice.OldPrice))
                         {
                             <span class="price old-price">@Model.ProductPrice.OldPrice</span>
-                        }
-								
-                        
-								    
+                        }    
                     </div>
-
-                }else
+                }
+                else
                 {
                     <div class="new-prices">
-								
-                        <span class="price actual-price">@Model.ProductPrice.Price</span>
+                        <div class="price actual-price">@Model.ProductPrice.Price</div>
                     </div>
                 }
             </h2>
             <p class="product-name"> <a class="product-name-a" href="@Url.RouteUrl("Product", new
                                                           {
                                                               SeName = Model.SeName
-                                                          })">@Text_Truncate(Model.Name, 30)</a></p>
+                                                          })">@(Model.Name)</a></p>
 
             
 @if(Model.ReviewOverviewModel.AllowCustomerReviews)
@@ -134,7 +130,7 @@
 
             <p class="show-on-list" >@if(!String.IsNullOrEmpty(Model.ShortDescription))
                {
-                   @Text_Truncate(Model.ShortDescription, 90)
+                   @Text_Truncate(Model.ShortDescription, 120)
                }
 
             </p>

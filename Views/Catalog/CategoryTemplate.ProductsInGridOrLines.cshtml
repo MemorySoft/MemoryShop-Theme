@@ -18,6 +18,7 @@
 @using Nop.Core.Infrastructure;
 @using Nop.Web.Models.Catalog;
 @using Nop.Web.Extensions;
+
 @*category breadcrumb*@
 @if (Model.DisplayCategoryBreadcrumb)
 {
@@ -50,6 +51,7 @@
     <h2 class="title">@Model.Name</h2>
     <div class="custom-page-box-border-less-div">
         @Html.Widget("categorydetails_top")
+
         @*description*@
         @if (!String.IsNullOrWhiteSpace(Model.Description))
         {
@@ -58,6 +60,7 @@
             </div>
         }
         @Html.Widget("categorydetails_before_subcategories")
+
         @*subcategories*@
         @if (Model.SubCategories.Count > 0)
         {
@@ -68,14 +71,14 @@
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
-                                    <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title"><img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl"
-                                         title="@item.PictureModel.Title" /></a>
-                                    
-                                    <p><a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
-                                        @item.Name</a></p>
-                                    
-                                </div>
-												
+                                    <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                                        <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
+                                    </a>
+                                    <p>
+                                        <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                                        @item.Name</a>
+                                    </p>
+                                </div>			
                             </div>
                         </div>
                     </div>
@@ -85,7 +88,9 @@
         
         <div class="row">
             <div class="col-md-12">
-                <div class="product-selectors-toggle"><a href="#">@T("Catalog.ViewMode.ToggleButton") <i class="fa fa-filter"></i></a></div>                      
+                <div class="product-selectors-toggle">
+                    <h4><a href="#!">@T("Catalog.ViewMode.ToggleButton") <i class="fa fa-filter"></i></a></h4>
+                </div>                     
                 <div class="product-selectors clearfix">
      
                     @*view mode*@
@@ -107,6 +112,7 @@
                             </div>
                         </div>
                     }
+
                     @*sorting*@
                     @if (Model.PagingFilteringContext.AllowProductSorting && Model.Products.Count > 0)
                     {
@@ -125,6 +131,7 @@
                             </div>                  
                         </div>
                     }
+
                     @*page size*@
                     @if (Model.PagingFilteringContext.AllowCustomersToSelectPageSize && Model.Products.Count > 0)
                     {
@@ -152,6 +159,7 @@
 
         @Html.Widget("categorydetails_before_filters")
         @Html.Widget("categorydetails_before_product_list")
+
         @*product list*@
         @if (Model.Products.Count > 0)
         {
@@ -180,7 +188,7 @@
                     
                         @foreach (var product in Model.Products)
                         {
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="offer offer-default silde-show-offer pull-text-center">
                                     @Html.Partial("_ProductBox", product)
                                 </div>

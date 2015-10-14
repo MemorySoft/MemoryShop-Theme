@@ -41,32 +41,34 @@
 
           @foreach (var product in Model.Products)
           {
-            <div class="col-md-3 compare-item text-center">
+            <div class="col-md-4 compare-item ">
 
-                <button class="btn btn-secondary btn-sm pull-right" onclick="setLocation('@Url.RouteUrl("RemoveProductFromCompareList", new { productId = product.Id })')"  >
+                <a class="btn-remove" href="#!" onclick="setLocation('@Url.RouteUrl("RemoveProductFromCompareList", new { productId = product.Id })')"  >
                   <i class="fa fa-times"></i>
-                </button>
+                </a>
                 <img alt="@product.DefaultPictureModel.AlternateText" src="@product.DefaultPictureModel.ImageUrl" title="@product.DefaultPictureModel.Title" />
                 <hr>
-
-                <h4 class="title">
-                  <a href="@Url.RouteUrl("Product", new { SeName = product.SeName })">@product.Name</a>
-                </h4>
-                @Html.Raw(product.ShortDescription)
-                <hr>
-
-                <span class="compare-price">@product.ProductPrice.Price</span>
-
-                @if (Model.IncludeFullDescriptionInCompareProducts)
-                {
+                
+                <div class="compare-info text-center">
+                  <h4 class="title">
+                    <a href="@Url.RouteUrl("Product", new { SeName = product.SeName })">@product.Name</a>
+                  </h4>
+                  @Html.Raw(product.ShortDescription)
                   <hr>
-                  <div class="full-description">
-                    <b>@T("Products.Compare.FullDescription")</b>
-                    <p class="text-center">
-                      @Html.Raw(product.FullDescription)
-                    </p>
-                  </div>
-                }
+
+                  <span class="compare-price">@product.ProductPrice.Price</span>
+
+                  @if (Model.IncludeFullDescriptionInCompareProducts)
+                  {
+                    <hr>
+                    <div class="full-description">
+                      <b>@T("Products.Compare.FullDescription")</b>
+                      <p class="text-center">
+                        @Html.Raw(product.FullDescription)
+                      </p>
+                    </div>
+                  }
+                </div>
             </div>
           }
         </div>

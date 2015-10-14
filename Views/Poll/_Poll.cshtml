@@ -1,8 +1,8 @@
 ﻿@model PollModel
 @using Nop.Web.Models.Polls;
-<div class="poll" id="poll-block-@(Model.Id)">
+<div class="poll text-center" id="poll-block-@(Model.Id)">
     
-    @Model.Name
+    <h3 class="title">@Model.Name</h3>
 
     @if (Model.AlreadyVoted)
     {
@@ -14,25 +14,28 @@
                 </li>
             }
         </ol>
-        <span class="poll-total-votes">@string.Format(T("Polls.TotalVotes").Text, Model.TotalVotes)</span>
+        <span class="poll-total-votes">
+            <strong>@string.Format(T("Polls.TotalVotes").Text, Model.TotalVotes)</strong>
+        </span>
     }
     else
     {
-        <ul class="poll-options">
+        <div class="poll-options">
             @foreach (var item in Model.Answers)
             {
-                <li class="answer">
+                <span class="answer">
                     <input id="pollanswers-@(item.Id)" type="radio" name="pollanswers-@(Model.Id)" value="@item.Id" />
                     <label for="pollanswers-@(item.Id)">@item.Name</label>
-                </li>
+                </span>
             }
-        </ul>
-        <div class="buttons pull-text-right">
+        </div>
+        <br>
+
+        <div class="buttons text-center">
             <input type="button" value="@T("Polls.Vote")" id="vote-poll-@(Model.Id)" class="vote-poll-button btn btn-primary" />
             <span id="poll-voting-progress-@(Model.Id)" style="display: none;" class="please-wait">@T("Common.Wait...")</span>
         </div>
-        <div class="poll-vote-error" id="block-poll-vote-error-@(Model.Id)">
-        </div>
+        <div class="poll-vote-error" id="block-poll-vote-error-@(Model.Id)"></div>
         
         <script type="text/javascript">
             $(document).ready(function () {

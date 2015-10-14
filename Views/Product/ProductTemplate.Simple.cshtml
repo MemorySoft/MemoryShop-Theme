@@ -21,8 +21,6 @@
 
 @Html.Partial("_ProductBreadcrumb", Model.Breadcrumb)
 
-
-
 <div class="features_items"><!--features_items-->
     <h2 class="title">@Model.Name</h2>
     <hr>
@@ -87,12 +85,10 @@
 
                             <hr>
                             <div class= "form-group row">
-                                @Html.Partial("_CompareProductsButton", Model)
-                            </div>
-                            <div class= "form-group row">
-                                @Html.Partial("_ProductEmailAFriendButton", Model)
-                            </div>
-                            @Html.Partial("_ShareButton", Model)
+                                <div class="col-md-4">@Html.Partial("_CompareProductsButton", Model)</div>
+                                <div class="col-md-4">@Html.Partial("_ProductEmailAFriendButton", Model)</div>
+                                <div class="col-md-4">@Html.Partial("_ShareButton", Model)</div>
+                            </div> 
                             @Html.Partial("_ProductTierPrices", Model.TierPrices)
                         </div>
                     </div>                    
@@ -145,7 +141,7 @@
         }
     </div>				
 </div>
-<hr>
+
 <div class="product-collateral">
     @Html.Action("ProductsAlsoPurchased", "Product", new { productId = Model.Id })
     @Html.Action("RelatedProducts", "Product", new { productId = Model.Id })

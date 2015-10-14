@@ -70,20 +70,21 @@
 						
     </div>
 
-
-
 }
 else
 {
 
         if (!String.IsNullOrEmpty(Model.Title))
         {
-            <div class="features_items"><!--features_items-->
+            <div class="features_items topic-block"><!--features_items-->
+            <div class="col-xs-12 col-sm-3">
                 <h2 class="title">@Model.Title</h2>
+            </div>
+            <div class="col-xs-12 col-sm-9">
                 <div class="custom-page-box-div">
                     @Html.Raw(Model.Body)
                 </div>
-						
+            </div>						
             </div>
 
 

@@ -139,8 +139,8 @@
                                 <div class="col-md-6">
                                     @Html.TextBoxFor(model => model.Username, new { @class = "gray-input" })
                                 </div>
-                                <div class="col-md-4">
-                                    @Html.RequiredHint()
+                                <div class="col-md-4">@Html.RequiredHint()</div>
+                                <div class="col-md-10 col-md-offset-2">
                                     @Html.ValidationMessageFor(model => model.Username)
                                     @if (Model.CheckUsernameAvailabilityEnabled)
                                     {

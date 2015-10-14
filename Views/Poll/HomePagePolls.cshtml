@@ -4,28 +4,21 @@
 {
 
     <div class="features_items"><!--features_items-->
-        <h2 class="title">@T("Polls.Title")</h2>
+        <!-- <h2 class="title text-center">@T("Polls.Title")</h2> -->
+        <hr>
         <div class="custom-page-box-div">
-        @{
-            var i = 0;
-        }
+            @{
+                var i = 0;
+            }
             @foreach (var poll in Model)
             {   
                 @Html.Partial("_Poll", poll)
-                
                 i++;
-                <br/>
                 if(Model.Count!=i)
                 {
-                    @:<legend></legend>
+                    @:
                 }
-                <br/>
             }
-        
-				</div>		
+		</div>		
     </div>
-
-
-    
-
 }

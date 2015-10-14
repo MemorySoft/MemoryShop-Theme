@@ -10,7 +10,7 @@ $(document).ready(function(){
 	if (document.documentElement.clientWidth < 640) {
 
 		// Controla la visibilidad de los filtros del catálogo
-		$('.product-selectors-toggle').click(function() {
+		$('.product-selectors-toggle a').click(function() {
 			$('.product-selectors').toggle();
 		});
 		// Controla la visibilidad de los enlaces del footer

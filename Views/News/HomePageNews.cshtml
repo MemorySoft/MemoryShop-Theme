@@ -4,45 +4,34 @@
 {
 
     <div class="blog-post-area">
-        <h2 class="title">@T("News")</h2>
-        <div class="custom-page-box-div">
+        <h2 class="title text-center">
+            @T("News")
+            <br> 
+            <small>
+                <a href="@Url.RouteUrl("NewsArchive")" class="btn btn-defaul">
+                    @T("News.ViewAll")
+                </a>
+            </small>
+        </h2>
+        <div class="custom-page-box-div row">
             @foreach (var item in Model.NewsItems)
             {
-
-                <div class="single-blog-post">
-                    <h3><a class="news-title" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">
-                                        @item.Title</a></h3>
-                    <div class="post-meta">
+                <div class="home-post single-blog-post col-xs-12 col-sm-4">
+                    <h3>
+                        <a class="news-title" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">
+                            @item.Title
+                        </a>
+                    </h3>
+                    <!-- <div class="post-meta">
                         <ul>
-                            
                             <li><i class="fa fa-clock-o"></i> @item.CreatedOn.ToString("T")</li>
                             <li><i class="fa fa-calendar"></i> @item.CreatedOn.ToString("D")</li>
                         </ul>
-                        
-                    </div>
-                    
+                    </div> -->
                     <p>@Html.Raw(item.Short)</p>
-                    <a  class="btn btn-primary" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@T("News.MoreInfo")</a>
+                    <a  class="btn btn-secondary" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@T("News.MoreInfo")</a>
                 </div>
-
-
-                
-                <br/>
-
-                <legend></legend>
-
             }
-        <div class="view-all pull-text-right">
-            <a href="@Url.RouteUrl("NewsArchive")" class="btn btn-primary">
-                @T("News.ViewAll")</a>
-        </div>
-
         </div>
     </div>
-
-
-
-    
-<br/>
-
 }

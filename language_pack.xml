@@ -8907,6 +8907,21 @@
     <LocaleResource Name="Admin.Plugins">
         <Value>Plugins</Value>
     </LocaleResource>
+    <LocaleResource Name="Admin.Plugins.Saved">
+      <Value>El plugin se ha actualizado correctamente.</Value>
+    </LocaleResource>
+    <LocalResource Name="Plugins.Payments.PayPalStandard.Fields.ReturnFromPayPalWithoutPaymentRedirectsToOrderDetailsPage">
+    	<Value>Compras incompletas vuelven a "Detalles del pedido"</Value>
+    </LocalResource>
+    <LocalResource Name="Plugins.Payments.PayPalStandard.Fields.ReturnFromPayPalWithoutPaymentRedirectsToOrderDetailsPage.Hint">
+    	<Value>Los usuarios que no completan sus compras en la página de pagos de PayPal serán redirigidos a la página de "Detalles del pedido"</Value>
+    </LocalResource>
+    <LocalResource Name="Plugins.Payments.PayPalStandard.Fields.AddressOverride">
+    	<Value>Sobreescribir dirección</Value>
+    </LocalResource>
+    <LocalResource Name="Plugins.Payments.PayPalStandard.Fields.AddressOverride.Hint">
+    	<Value>Se sobreescribirá la dirección de correo de los clientes que tienen cuenta de PayPal pero que ya han introducido su correo electrónico en la tienda, usando esta última.</Value>
+    </LocalResource>
     <LocaleResource Name="Admin.Promotions">
         <Value>Promociones</Value>
     </LocaleResource>
